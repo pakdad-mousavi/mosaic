@@ -1,0 +1,23 @@
+{
+  "name": "mosaic",
+  "version": "1.0.0",
+  "description": "A lightweight command-line tool for merging multiple images into customizable grid layouts.",
+  "homepage": "https://github.com/pakdad-mousavi/mosaic#readme",
+  "bugs": {
+    "url": "https://github.com/pakdad-mousavi/mosaic/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pakdad-mousavi/mosaic.git"
+  },
+  "bin": {
+    "mosaic": "bin/mosaic.js"
+  },
+  "license": "ISC",
+  "author": "Pakdad Mousavi",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
