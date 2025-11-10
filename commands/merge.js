@@ -13,6 +13,11 @@ const mergeCommand = new Command('merge')
     null
   )
   .option(
+    '-l, --layout <square|preserve-aspect|adaptive|crop>',
+    'Set the layout mode to use when merging the images.',
+    'square'
+  )
+  .option(
     '-r, --recursive',
     'Get all images in the directory given and all sub-directories. Max-depth is set to 10.',
     false
@@ -24,6 +29,7 @@ const mergeCommand = new Command('merge')
       dir: options.dir,
       columns: options.columns,
       size: options.resize,
+      layout: options.layout,
       recursive: options.recursive,
     };
 
