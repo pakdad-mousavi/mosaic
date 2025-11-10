@@ -1,30 +1,43 @@
 import { Command } from 'commander';
-import { main, validateParams } from '../lib/merge.js';
-import chalk from 'chalk';
+import { main, validateParams } from '../lib/merge/merge.js';
+import { Message } from '../lib/utils.js';
 
 const mergeCommand = new Command('merge')
   .description('Merge images into a grid layout.')
   .argument('[files...]', 'Image filepaths to merge (use --dir for directories).')
   .option('-d, --dir <dirpath>', 'Path to the directory which contains your images.', false)
-  .action((files, options) => {
+  .option('-c, --columns <columns>', 'Set the number of columns that you wish to have.', 4)
+  .option(
+    '-s, --resize <size>',
+    'Set the width in pixels to resize your images (default is smallest image size).',
+    null
+  )
+  .option(
+    '-r, --recursive',
+    'Get all images in the directory given and all sub-directories. Max-depth is set to 10.',
+    false
+  )
+  .action(async (files, options) => {
     // Define all possible parameters for this command
     const params = {
       files: files || false,
       dir: options.dir,
+      columns: options.columns,
+      size: options.resize,
+      recursive: options.recursive,
     };
 
-    // Validate the params
-    validateParams(mergeCommand, params);
+    try {
+      // Validate the params
+      validateParams(params);
 
-    // Run logic
-    main(mergeCommand, params);
-
-    // Validate input
-    // if ((!files || files.length === 0) && !options?.dir) {
-    //   mergeCommand.error('No files or directories provided. Use file paths or --dir.', {
-    //     exitCode: 2,
-    //   });
-    // }
+      // Run logic
+      await main(params);
+    } catch (e) {
+      // Catch all errors
+      const m = new Message(e.message, 'error');
+      mergeCommand.error(m.message, { exitCode: 1 });
+    }
   });
 
 export default mergeCommand;
