@@ -8,8 +8,13 @@ const mergeCommand = new Command('merge')
   .option('-d, --dir <dirpath>', 'Path to the directory which contains your images.', false)
   .option('-c, --columns <columns>', 'Set the number of columns that you wish to have.', 4)
   .option(
-    '-s, --resize <size>',
-    'Set the width in pixels to resize your images (default is smallest image size).',
+    '--iw, --image-width <image-width>',
+    'Set the image width in pixels to resize all images to (default is smallest image size).',
+    null
+  )
+  .option(
+    '--cw, --canvas-width <canvas-width>',
+    'Set the entire canvas width in pixels, used only in adaptive mode.',
     null
   )
   .option(
@@ -28,10 +33,13 @@ const mergeCommand = new Command('merge')
       files: files || false,
       dir: options.dir,
       columns: options.columns,
-      size: options.resize,
+      imageWidth: options.imageWidth,
+      canvasWidth: options.canvasWidth,
       layout: options.layout,
       recursive: options.recursive,
     };
+
+    console.log(params);
 
     try {
       // Validate the params
