@@ -18,9 +18,9 @@ masonryCommand
     const sharedOptions = validateSharedOptions(params);
     const commandOptions = validateMasonryOptions(params);
     const validatedParams = { ...sharedOptions, ...commandOptions };
-    
+
     console.log(validatedParams);
-    
+
     // Run masonryMerge
   });
 
