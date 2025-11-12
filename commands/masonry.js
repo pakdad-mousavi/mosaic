@@ -1,6 +1,6 @@
 import { Command } from 'commander';
-import { addSharedOptions } from '../lib/utils.js';
-import { validateSharedOptions, validateMasonryOptions } from '../lib/validations.js';
+import { addSharedOptions } from '../lib/helpers/utils.js';
+import { validateSharedOptions, validateMasonryOptions } from '../lib/helpers/validations.js';
 
 const masonryCommand = new Command('masonry');
 

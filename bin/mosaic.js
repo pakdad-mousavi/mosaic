@@ -2,7 +2,7 @@
 
 import { Command } from 'commander';
 import mergeCommand from '../commands/merge.js';
-import { handleError } from '../lib/utils.js';
+import { handleError } from '../lib/helpers/utils.js';
 
 const program = new Command();
 
