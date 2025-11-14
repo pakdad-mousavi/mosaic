@@ -2,7 +2,7 @@ import { Command } from 'commander';
 import { addSharedOptions, writeImage } from '../lib/helpers/utils.js';
 import { validateSharedOptions, validateSquareOptions } from '../lib/helpers/validations.js';
 import { loadImages } from '../lib/helpers/loadImages.js';
-import { squareMerge } from '../lib/merges/square-merge/square.js';
+import { squareMerge } from '../lib/merges/square-merge/index.js';
 
 const squareCommand = new Command('square');
 
