@@ -36,7 +36,7 @@ const main = async (files, opts) => {
 const getValidatedParams = (files, opts) => {
   const params = { files, ...opts };
   const sharedOptions = validateSharedOptions(params);
-  const commandOptions = validateSquareOptions(params);
+  const commandOptions = validateSquareOptions(sharedOptions, params);
   return { ...sharedOptions, ...commandOptions };
 };
 
