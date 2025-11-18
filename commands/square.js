@@ -1,6 +1,6 @@
 import { Command } from 'commander';
-import { addSharedOptions, handleError, writeImage } from '../lib/helpers/utils.js';
-import { validateSharedOptions, validateSquareOptions } from '../lib/helpers/validations.js';
+import { addSharedOptions, getValidatedParams, handleError, writeImage } from '../lib/helpers/utils.js';
+import { validateSquareOptions } from '../lib/helpers/validations.js';
 import { loadImages } from '../lib/helpers/loadImages.js';
 import { squareMerge } from '../lib/merges/square-merge/index.js';
 
@@ -21,7 +21,7 @@ squareCommand
 const main = async (files, opts) => {
   // Collect and validate parameters
   try {
-    const validatedParams = getValidatedParams(files, opts);
+    const validatedParams = getValidatedParams(files, opts, validateSquareOptions);
     console.log(validatedParams);
 
     // Load images, create grid, and write grid on disk
@@ -31,13 +31,6 @@ const main = async (files, opts) => {
   } catch (e) {
     handleError(e);
   }
-};
-
-const getValidatedParams = (files, opts) => {
-  const params = { files, ...opts };
-  const sharedOptions = validateSharedOptions(params);
-  const commandOptions = validateSquareOptions(sharedOptions, params);
-  return { ...sharedOptions, ...commandOptions };
 };
 
 const generateAndSaveGrid = async (validatedParams) => {

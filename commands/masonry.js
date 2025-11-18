@@ -1,6 +1,6 @@
 import { Command } from 'commander';
-import { addSharedOptions, handleError, writeImage } from '../lib/helpers/utils.js';
-import { validateSharedOptions, validateMasonryOptions } from '../lib/helpers/validations.js';
+import { addSharedOptions, getValidatedParams, handleError, writeImage } from '../lib/helpers/utils.js';
+import { validateMasonryOptions } from '../lib/helpers/validations.js';
 import { loadImages } from '../lib/helpers/loadImages.js';
 import { masonryMerge } from '../lib/merges/masonry-merge/index.js';
 
@@ -22,7 +22,7 @@ masonryCommand
 const main = async (files, opts) => {
   try {
     // Collect and validate parameters
-    const validatedParams = getValidatedParams(files, opts);
+    const validatedParams = getValidatedParams(files, opts, validateMasonryOptions);
     console.log(validatedParams);
 
     // Load images, create grid, and write grid on disk
@@ -32,13 +32,6 @@ const main = async (files, opts) => {
   } catch (e) {
     handleError(e);
   }
-};
-
-const getValidatedParams = (files, opts) => {
-  const params = { files, ...opts };
-  const sharedOptions = validateSharedOptions(params);
-  const commandOptions = validateMasonryOptions(sharedOptions, params);
-  return { ...sharedOptions, ...commandOptions };
 };
 
 const generateAndSaveGrid = async (validatedParams) => {
