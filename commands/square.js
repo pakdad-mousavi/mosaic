@@ -7,7 +7,7 @@ import { squareMerge } from '../lib/merges/square-merge/index.js';
 const squareCommand = new Command('square');
 
 squareCommand
-  .description('Use a uniform grid layout (all images same size)')
+  .description('Use a uniform grid layout (all images are 1:1)')
   .option('-m, --fit-mode <contain|cover>', 'Determines how to fit the images in their cells', 'contain')
   .option('--is, --image-size <px>', 'The width and height of each image, defaults to the smallest image', null)
   .option('-p, --padding-color <hex|transparent>', 'Image padding color', 'transparent')
