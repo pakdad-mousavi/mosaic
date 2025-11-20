@@ -34,7 +34,7 @@ const main = async (files, opts) => {
 };
 
 const generateAndSaveGrid = async (validatedParams) => {
-  const images = await loadImages(validatedParams);
+  const { files, images } = await loadImages(validatedParams);
   const grid = await squareMerge(images, validatedParams);
   writeImage(grid, validatedParams.output);
 };
