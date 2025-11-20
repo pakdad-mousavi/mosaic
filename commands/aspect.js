@@ -11,8 +11,9 @@ aspectCommand
   .option('--ar, --aspect-ratio <width/height|number>', 'The aspect ratio of all the images (examples: 16/9, 4:3, 1.777)', null)
   .option('-w, --image-width <px>', 'The width of each image, defaults to the smallest image', null)
   .option('-c, --columns <n>', 'The number of columns', 4)
-  .option('--caption', 'Whether to caption each image', false)
-  .option('--caption-color <hex|transparent>', 'Image caption color', '#000000')
+  .option('--ca, --caption', 'Whether to caption each image', false)
+  .option('--cc, --caption-color <hex>', 'Image Caption color', '#000000')
+  .option('--mcs, --max-caption-size <pt>', 'The maximum allowed caption size', 100)
   .action(async (files, opts) => {
     await main(files, opts);
   });
