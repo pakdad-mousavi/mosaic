@@ -12,8 +12,9 @@ squareCommand
   .option('--is, --image-size <px>', 'The width and height of each image, defaults to the smallest image', null)
   .option('-p, --padding-color <hex|transparent>', 'Image padding color', 'transparent')
   .option('-c, --columns <n>', 'The number of columns', 4)
-  .option('--caption', 'Whether to caption each image', false)
-  .option('--caption-color <hex|transparent>', 'Image caption color', '#000000')
+  .option('--ca, --caption', 'Whether to caption each image', false)
+  .option('--cc, --caption-color <hex>', 'Caption color', '#000000')
+  .option('--mcs, --max-caption-size <pt>', 'The maximum allowed caption size', 100)
   .action(async (files, opts) => {
     await main(files, opts);
   });
@@ -35,7 +36,7 @@ const main = async (files, opts) => {
 
 const generateAndSaveGrid = async (validatedParams) => {
   const { files, images } = await loadImages(validatedParams);
-  const grid = await squareMerge(images, validatedParams);
+  const grid = await squareMerge(files, images, validatedParams);
   writeImage(grid, validatedParams.output);
 };
 
