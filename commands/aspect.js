@@ -36,7 +36,7 @@ const main = async (files, opts) => {
 const generateAndSaveGrid = async (validatedParams) => {
   const { files, images } = await loadImages(validatedParams);
   const grid = await aspectMerge(files, images, validatedParams);
-  writeImage(grid, validatedParams.output);
+  await writeImage(grid, validatedParams.output);
 };
 
 addSharedOptions(aspectCommand);

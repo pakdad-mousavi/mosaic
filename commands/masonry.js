@@ -37,7 +37,7 @@ const main = async (files, opts) => {
 const generateAndSaveGrid = async (validatedParams) => {
   const { images } = await loadImages(validatedParams);
   const grid = await masonryMerge(images, validatedParams);
-  writeImage(grid, validatedParams.output);
+  await writeImage(grid, validatedParams.output);
 };
 
 addSharedOptions(masonryCommand);
