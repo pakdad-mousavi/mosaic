@@ -1,5 +1,15 @@
 import { Command } from 'commander';
-import { addSharedOptions, getValidatedParams, handleError, writeImage } from '../lib/helpers/utils.js';
+import chalk from 'chalk';
+import {
+  addSharedOptions,
+  cliConfirm,
+  displayInfoMessage,
+  displaySuccessMessage,
+  displayWarningMessage,
+  getValidatedParams,
+  handleError,
+  writeImage,
+} from '../lib/helpers/utils.js';
 import { validateMasonryOptions } from '../lib/helpers/validations.js';
 import { loadImages } from '../lib/helpers/loadImages.js';
 import { masonryMerge } from '../lib/merges/masonry-merge/index.js';
@@ -23,7 +33,6 @@ const main = async (files, opts) => {
   try {
     // Collect and validate parameters
     const validatedParams = getValidatedParams(files, opts, validateMasonryOptions);
-    console.log(validatedParams);
 
     // Load images, create grid, and write grid on disk
     generateAndSaveGrid(validatedParams);
@@ -35,9 +44,26 @@ const main = async (files, opts) => {
 };
 
 const generateAndSaveGrid = async (validatedParams) => {
-  const { images } = await loadImages(validatedParams);
+  const { images, ignoredFiles } = await loadImages(validatedParams);
+
+  // Display warnings if needed
+  if (ignoredFiles.length) {
+    displayWarningMessage('\nThese files will be ignored due to unsupported formats:');
+    for (const file of ignoredFiles) {
+      displayInfoMessage(file);
+    }
+
+    const confirmation = await cliConfirm('\nAre you sure you want to continue?');
+    if (!confirmation) return;
+  }
+
   const grid = await masonryMerge(images, validatedParams);
-  await writeImage(grid, validatedParams.output);
+  const success = await writeImage(grid, validatedParams.output);
+
+  // Display success message
+  if (success) {
+    displaySuccessMessage(`\nMosaic has been created successfully: ${chalk.bold(validatedParams.output)}\n`);
+  }
 };
 
 addSharedOptions(masonryCommand);

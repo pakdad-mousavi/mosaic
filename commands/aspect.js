@@ -1,5 +1,15 @@
 import { Command } from 'commander';
-import { addSharedOptions, getValidatedParams, handleError, writeImage } from '../lib/helpers/utils.js';
+import chalk from 'chalk';
+import {
+  addSharedOptions,
+  cliConfirm,
+  displayInfoMessage,
+  displaySuccessMessage,
+  displayWarningMessage,
+  getValidatedParams,
+  handleError,
+  writeImage,
+} from '../lib/helpers/utils.js';
 import { validateAspectOptions } from '../lib/helpers/validations.js';
 import { loadImages } from '../lib/helpers/loadImages.js';
 import { aspectMerge } from '../lib/merges/aspect-merge/index.js';
@@ -22,7 +32,6 @@ const main = async (files, opts) => {
   // Collect and validate parameters
   try {
     const validatedParams = getValidatedParams(files, opts, validateAspectOptions);
-    console.log(validatedParams);
 
     // Load images, create grid, and write grid on disk
     await generateAndSaveGrid(validatedParams);
@@ -34,9 +43,26 @@ const main = async (files, opts) => {
 };
 
 const generateAndSaveGrid = async (validatedParams) => {
-  const { files, images } = await loadImages(validatedParams);
+  const { files, images, ignoredFiles } = await loadImages(validatedParams);
+
+  // Display warnings if needed
+  if (ignoredFiles.length) {
+    displayWarningMessage('\nThese files will be ignored due to unsupported formats:');
+    for (const file of ignoredFiles) {
+      displayInfoMessage(file);
+    }
+
+    const confirmation = await cliConfirm('\nAre you sure you want to continue?');
+    if (!confirmation) return;
+  }
+
   const grid = await aspectMerge(files, images, validatedParams);
-  await writeImage(grid, validatedParams.output);
+  const success = await writeImage(grid, validatedParams.output);
+
+  // Display success message
+  if (success) {
+    displaySuccessMessage(`\nMosaic has been created successfully: ${chalk.bold(validatedParams.output)}\n`);
+  }
 };
 
 addSharedOptions(aspectCommand);
