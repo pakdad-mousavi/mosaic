@@ -8,7 +8,7 @@ const program = new Command();
 
 // Define program
 program
-  .name('mosaic')
+  .name('pixeli')
   .description('A lightweight command-line tool for merging multiple images into customizable grid layouts.')
   .version('1.0.0');
 

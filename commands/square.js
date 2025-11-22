@@ -63,7 +63,7 @@ const generateAndSaveGrid = async (validatedParams) => {
 
   // Display success message
   if (success) {
-    displaySuccessMessage(`\nMosaic has been created successfully: ${chalk.bold(validatedParams.output)}\n`);
+    displaySuccessMessage(`\nImage has been created successfully: ${chalk.bold(validatedParams.output)}\n`);
   }
 };
 

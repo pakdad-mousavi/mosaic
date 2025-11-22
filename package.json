@@ -1,17 +1,17 @@
 {
-  "name": "mosaic",
+  "name": "pixeli",
   "version": "0.1.0",
   "description": "A lightweight command-line tool for merging multiple images into customizable grid layouts.",
-  "homepage": "https://github.com/pakdad-mousavi/mosaic#readme",
+  "homepage": "https://github.com/pakdad-mousavi/pixeli#readme",
   "bugs": {
-    "url": "https://github.com/pakdad-mousavi/mosaic/issues"
+    "url": "https://github.com/pakdad-mousavi/pixeli/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pakdad-mousavi/mosaic.git"
+    "url": "git+https://github.com/pakdad-mousavi/pixeli.git"
   },
   "bin": {
-    "mosaic": "bin/mosaic.js"
+    "pixeli": "bin/pixeli.js"
   },
   "license": "ISC",
   "author": "Pakdad Mousavi",
