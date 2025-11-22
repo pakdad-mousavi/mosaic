@@ -17,6 +17,11 @@
   "author": "Pakdad Mousavi",
   "type": "module",
   "main": "index.js",
+  "files": [
+    "/lib",
+    "/bin",
+    "/commands"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
