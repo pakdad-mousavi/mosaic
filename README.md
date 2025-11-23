@@ -1,9 +1,11 @@
 
 # Pixeli (Pre-release) [![npm version](https://img.shields.io/badge/npm-v0.1.1-blue)](https://www.npmjs.com/package/pixeli)
 
-<img src="./assets/logo.svg" width="125" height="125" align="left" style="margin-right: 10px">
+<img src="./assets/logo.svg" width="150" height="150" align="right" style="margin-right: 10px">
 
 **Pixeli** is a lightweight and flexible command-line tool for merging multiple images into clean, customizable grid layouts. It’s designed for speed and simplicity, making it ideal for generating collages, previews, gallery layouts, inspiration boards, and composite images without relying on heavy desktop software.
+
+Pixeli uses Sharp, a Node.js wrapper for the libvips library which is based on C. This makes it an extremely fast tool with support for PNG, JPG, GIF, SVG, AVIF, etc.
 
 The tool currently supports two main layout modes: ***Grid*** and ***Masonry*** (horizontal / vertical). Each of them provide a distinct visual style to match a project's needs, for example:
 
