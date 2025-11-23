@@ -7,28 +7,11 @@
 
 The tool currently supports two main layout modes: ***Grid*** and ***Masonry*** (horizontal / vertical). Each of them provide a distinct visual style to match a project's needs, for example:
 
-<div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; width: 100%; margin: 0 auto 20px auto;">
-  <div style="display: flex; width: 80%; gap: 20px;">
-    <div style="display: flex; flex-direction: column; text-align: center;">
-      <h3 style="border-bottom: 1px solid #fff; padding-bottom: 10px">Grid (1:1 images)</h3>
-      <img src="./samples/grid.png">
-    </div>
-    <div style="display: flex; flex-direction: column; text-align: center;">
-      <h3 style="border-bottom: 1px solid #fff; padding-bottom: 10px">Grid (with captions)</h3>
-      <img src="./samples/grid-with-captions.png">
-    </div>
-  </div>
-  <div style="display: flex; width: 80%; gap: 20px;">
-    <div style="display: flex; flex-direction: column; text-align: center;">
-      <h3 style="border-bottom: 1px solid #fff; padding-bottom: 10px">Masonry (Horizontal)</h3>
-      <img src="./samples/masonry-horizontal.png">
-    </div>
-    <div style="display: flex; flex-direction: column; text-align: center;">
-      <h3 style="border-bottom: 1px solid #fff; padding-bottom: 10px">Masonry (Vertical)</h3>
-      <img src="./samples/masonry-vertical.png">
-    </div>
-  </div>
-</div>
+| Grid (1:1 images) | Grid (with captions) |
+|---|---|
+| <img src="samples/grid.png" width="400"> | <img src="samples/grid-with-captions.png" width="400"> |
+| Masonry (Horizontal) | Masonry (Vertical) |
+| <img src="samples/masonry-horizontal.png" width="400"> | <img src="samples/masonry-vertical.png" width="400"> |
 
 # Installation
 Pixeli can be installed using NPM. Simply run the following command to install it globally on your machine:
