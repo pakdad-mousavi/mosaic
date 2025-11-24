@@ -1,6 +1,6 @@
 {
   "name": "pixeli",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A lightweight command-line tool for merging multiple images into customizable grid layouts.",
   "homepage": "https://github.com/pakdad-mousavi/pixeli#readme",
   "bugs": {
@@ -21,6 +21,13 @@
     "/lib",
     "/bin",
     "/commands"
+  ],
+  "keywords": [
+    "cli",
+    "nodejs",
+    "npm",
+    "image-processing",
+    "image-merge"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
