@@ -1,5 +1,5 @@
 
-# Pixeli (Pre-release) [![npm version](https://img.shields.io/badge/npm-v0.1.1-blue)](https://www.npmjs.com/package/pixeli) [![License](https://img.shields.io/github/license/pakdad-mousavi/pixeli)](./LICENSE)
+# Pixeli (Pre-release) [![npm version](https://img.shields.io/github/package-json/version/pakdad-mousavi/pixeli)](https://www.npmjs.com/package/pixeli) [![License](https://img.shields.io/github/license/pakdad-mousavi/pixeli)](./LICENSE)
 
 <img src="./assets/logo.svg" width="150" align="right">
 
@@ -63,9 +63,9 @@ To create a masonry style image, you can use the masonry merge command. The `-rd
 pixeli merge masonry -rd ./samples/images --cvw 4000
 ```
 
-By default, the masonry merge command uses a horizontal orientation, but a vertical one can be specified using the `--or` flag, followed by the `--cvh` to specify the canvas height:
+By default, the masonry merge command uses a horizontal flow, but a vertical one can be specified using the `-f` flag, followed by the `--cvh` to specify the canvas height:
 ```bash
-pixeli merge masonry -rd ./samples/images --or vertical --cvh 4000
+pixeli merge masonry -rd ./samples/images -f vertical --cvh 4000
 ```
 
 # Full Documentation
@@ -88,15 +88,15 @@ Usage: `pixeli merge masonry [options] <input...> -o <output>`
 
 The masonry mode preserves each image’s natural shape, creating an organic brick-wall layout similar to Pinterest boards.
 
-| Option/Flag                                          | Default                 | Description                                                                                                                                                   |
-| ---------------------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--rh`, `--row-height <px>`                          | *smallest input height* | Sets the **target height for all images in a row** when using `horizontal` orientation. Images are scaled proportionally based on this height.                |
-| `--cw`, `--column-width <px>`                        | *smallest input width*  | Sets the **target width for all images in a column** when using `vertical` orientation. Images are scaled proportionally based on this width.                 |
-| `--cvw`, `--canvas-width <px>`                       | –                       | Sets the **fixed width** of the final output canvas. Required when using a `horizontal` orientation to know when to break a row.                              |
-| `--cvh`, `--canvas-height <px>`                      | –                       | Sets the **fixed height** of the final output canvas. Required when using a `vertical` orientation to know when to break a column.                            |
-| `--or`, `--orientation <horizontal\|vertical>`       | `horizontal`            | Determines the **flow direction** of the masonry layout. `horizontal` creates rows of varying widths; `vertical` creates columns of varying heights.          |
-| `--ha`, `--h-align <left\|center\|right\|justified>` | `justified`             | Controls **horizontal alignment** of rows when in `horizontal` orientation. `justified` overfills each row and crops the final image to fill up the canvas.   |
-| `--va`, `--v-align <top\|middle\|bottom\|justified>` | `justified`             | Controls **vertical alignment** of columns when in `vertical` orientation. `justified` overfills each column and crops the final image to fill up the canvas. |
+| Option/Flag                                          | Default                 | Description                                                                                                                                            |
+| ---------------------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--rh`, `--row-height <px>`                          | *smallest input height* | Sets the **target height for all images in a row** when using `horizontal` flow. Images are scaled proportionally based on this height.                |
+| `--cw`, `--column-width <px>`                        | *smallest input width*  | Sets the **target width for all images in a column** when using `vertical` flow. Images are scaled proportionally based on this width.                 |
+| `--cvw`, `--canvas-width <px>`                       | –                       | Sets the **fixed width** of the final output canvas. Required when using a `horizontal` flow to know when to break a row.                              |
+| `--cvh`, `--canvas-height <px>`                      | –                       | Sets the **fixed height** of the final output canvas. Required when using a `vertical` flow to know when to break a column.                            |
+| `-f`, `--flow <horizontal\|vertical>`                | `horizontal`            | Determines the **flow direction** of the masonry layout. `horizontal` creates rows of varying widths; `vertical` creates columns of varying heights.   |
+| `--ha`, `--h-align <left\|center\|right\|justified>` | `justified`             | Controls **horizontal alignment** of rows when in `horizontal` flow. `justified` overfills each row and crops the final image to fill up the canvas.   |
+| `--va`, `--v-align <top\|middle\|bottom\|justified>` | `justified`             | Controls **vertical alignment** of columns when in `vertical` flow. `justified` overfills each column and crops the final image to fill up the canvas. |
 
 # License
 This project is licensed under the [MIT License](./LICENSE).
