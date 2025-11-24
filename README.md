@@ -1,7 +1,7 @@
 
 # Pixeli (Pre-release) [![npm version](https://img.shields.io/badge/npm-v0.1.1-blue)](https://www.npmjs.com/package/pixeli)
 
-<img src="./assets/logo.svg" width="150" align="left" style="margin-right: 10px">
+<img src="./assets/logo.svg" width="150" align="left" style="margin-right: 10px; margin-bottom: 10px;">
 
 **Pixeli** is a lightweight and flexible command-line tool for merging multiple images into clean, customizable grid layouts. It’s designed for speed and simplicity, making it ideal for generating collages, previews, gallery layouts, inspiration boards, and composite images without relying on heavy desktop software.
 
