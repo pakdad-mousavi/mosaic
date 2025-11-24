@@ -16,9 +16,14 @@ The tool currently supports two main layout modes: ***Grid*** and ***Masonry*** 
 | <img src="samples/masonry-horizontal.png" width="400"> | <img src="samples/masonry-vertical.png" width="400"> |
 
 ## Installation
-Pixeli can be installed using NPM. Simply run the following command to install it globally on your machine:
+Pixeli can be installed using npm. Simply run the following command to install it globally on your machine:
 ```bash
 npm i -g pixeli
+```
+
+You can also run pixeli directly with npx without installing it globally. This is convenient for quick experiments or one-off usage:
+```bash
+npx pixeli merge <subcommand> [options] <files...>
 ```
 
 ## Quick Examples
@@ -92,7 +97,7 @@ The following options and flags are shared for all of the subcommands under the 
 
 
 ### pixeli merge grid
-Usage: `pixeli merge grid [options] <input...> -o <output>`
+Usage: `pixeli merge grid [options] [files...]`
 
 The grid mode arranges images into a clean, uniform grid with fixed columns and automatic row calculation. The table below displays all of the options available to this command:
 | Option/Flag                                     | Default                | Description                                                                                                                                                                              |
@@ -105,7 +110,7 @@ The grid mode arranges images into a clean, uniform grid with fixed columns and 
 | `--mcs`, `--max-caption-size <pt>`              | `100`                  | Sets the **maximum allowed caption font size**. Useful when images are extremely large and the caption is not big enough. The renderer may auto-reduce the font size if necessary.       |
 
 ### pixeli merge masonry
-Usage: `pixeli merge masonry [options] <input...> -o <output>`
+Usage: `pixeli merge masonry [options] [files...]`
 
 The masonry mode preserves each image’s natural shape, creating an organic brick-wall layout similar to Pinterest boards.
 
