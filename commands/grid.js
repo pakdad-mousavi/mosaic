@@ -10,15 +10,15 @@ import {
   handleError,
   writeImage,
 } from '../lib/helpers/utils.js';
-import { validateAspectOptions } from '../lib/helpers/validations.js';
+import { validateGridOptions } from '../lib/helpers/validations.js';
 import { loadImages } from '../lib/helpers/loadImages.js';
-import { aspectMerge } from '../lib/merges/aspect-merge/index.js';
+import { gridMerge } from '../lib/merges/grid-merge/index.js';
 
-const aspectCommand = new Command('aspect');
+const gridCommand = new Command('grid');
 
-aspectCommand
-  .description('Same aspect ratio, but not necessarily 1:1')
-  .option('--ar, --aspect-ratio <width/height|number>', 'The aspect ratio of all the images (examples: 16/9, 4:3, 1.777)', null)
+gridCommand
+  .description('Arranges images in an organized grid.')
+  .option('--ar, --aspect-ratio <width/height|number>', 'The aspect ratio of all the images (examples: 16/9, 4:3, 1.777)', '1:1')
   .option('-w, --image-width <px>', 'The width of each image, defaults to the smallest image', null)
   .option('-c, --columns <n>', 'The number of columns', 4)
   .option('--ca, --caption', 'Whether to caption each image', false)
@@ -31,7 +31,7 @@ aspectCommand
 const main = async (files, opts) => {
   // Collect and validate parameters
   try {
-    const validatedParams = getValidatedParams(files, opts, validateAspectOptions);
+    const validatedParams = getValidatedParams(files, opts, validateGridOptions);
 
     // Load images, create grid, and write grid on disk
     await generateAndSaveGrid(validatedParams);
@@ -56,7 +56,7 @@ const generateAndSaveGrid = async (validatedParams) => {
     if (!confirmation) return;
   }
 
-  const grid = await aspectMerge(files, images, validatedParams);
+  const grid = await gridMerge(files, images, validatedParams);
   const success = await writeImage(grid, validatedParams.output);
 
   // Display success message
@@ -65,5 +65,5 @@ const generateAndSaveGrid = async (validatedParams) => {
   }
 };
 
-addSharedOptions(aspectCommand);
-export default aspectCommand;
+addSharedOptions(gridCommand);
+export default gridCommand;
