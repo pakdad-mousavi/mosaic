@@ -1,6 +1,6 @@
 {
   "name": "pixeli",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A lightweight command-line tool for merging multiple images into customizable grid layouts.",
   "homepage": "https://github.com/pakdad-mousavi/pixeli#readme",
   "bugs": {
@@ -10,16 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/pakdad-mousavi/pixeli.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/pakdad-mousavi/pixeli/blob/main/LICENSE"
-    }
-  ],
   "bin": {
     "pixeli": "bin/pixeli.js"
   },
-  "license": "ISC",
+  "license": "MIT",
   "author": "Pakdad Mousavi",
   "type": "module",
   "main": "index.js",
