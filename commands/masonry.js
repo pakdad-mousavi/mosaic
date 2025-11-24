@@ -22,9 +22,9 @@ masonryCommand
   .option('--cw, --column-width <px>', 'The width of each column, defaults to the smallest image width', null)
   .option('--cvw, --canvas-width <px>', 'The width of the canvas', null)
   .option('--cvh, --canvas-height <px>', 'The height of the canvas', null)
-  .option('--or, --orientation <horizontal|vertical>', 'The orientation of the masonry layout', 'horizontal')
-  .option('--ha, --h-align <left|center|right|justified>', 'Horizontal alignment of the grid (for horizontal orientations)', null)
-  .option('--va, --v-align <top|middle|bottom|justified>', 'Vertical alignment of the grid (for vertical orientations)', null)
+  .option('-f, --flow <horizontal|vertical>', 'The flow of the masonry layout', 'horizontal')
+  .option('--ha, --h-align <left|center|right|justified>', 'Horizontal alignment of the grid (for horizontal flows)', null)
+  .option('--va, --v-align <top|middle|bottom|justified>', 'Vertical alignment of the grid (for vertical flows)', null)
   .action((files, opts) => {
     main(files, opts);
   });
