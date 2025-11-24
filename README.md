@@ -126,3 +126,6 @@ The masonry mode preserves each image’s natural shape, creating an organic bri
 
 ## License
 This project is licensed under the [MIT License](./LICENSE).
+
+## Other
+This project was submitted to [Hack Club](https://hackclub.com/), a group consisting of over 100,000 teen hackers from around the world who work on cool projects and get to participate in awesome programs like [Midnight](https://midnight.hackclub.com).
