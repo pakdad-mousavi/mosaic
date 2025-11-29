@@ -31,7 +31,7 @@ masonryCommand
 const main = async (files, opts) => {
   try {
     // Collect and validate parameters
-    const validatedParams = getValidatedParams(files, opts, validateMasonryOptions);
+    const validatedParams = await getValidatedParams(files, opts, validateMasonryOptions);
 
     // Load images, create grid, and write grid on disk
     generateAndSaveGrid(validatedParams);

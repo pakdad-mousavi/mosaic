@@ -30,7 +30,7 @@ gridCommand
 const main = async (files, opts) => {
   // Collect and validate parameters
   try {
-    const validatedParams = getValidatedParams(files, opts, validateGridOptions);
+    const validatedParams = await getValidatedParams(files, opts, validateGridOptions);
 
     // Load images, create grid, and write grid on disk
     await generateAndSaveGrid(validatedParams);

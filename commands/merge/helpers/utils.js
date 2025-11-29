@@ -11,9 +11,9 @@ export const addSharedOptions = (cmd) => {
     .option('-o, --output <file>', 'Output file path', './pixeli.png');
 };
 
-export const getValidatedParams = (files, opts, validationFunc) => {
+export const getValidatedParams = async (files, opts, validationFunc) => {
   const params = { files, ...opts };
-  const sharedOptions = validateSharedOptions(params);
+  const sharedOptions = await validateSharedOptions(params);
   const commandOptions = validationFunc(sharedOptions, params);
   return { ...sharedOptions, ...commandOptions };
 };

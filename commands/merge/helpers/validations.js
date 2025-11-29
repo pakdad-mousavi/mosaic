@@ -1,18 +1,36 @@
+import fs from 'node:fs/promises';
+
 import {
   displayWarningMessage,
+  handleError,
   isSupportedOutputImage,
   isValidHexadecimal,
   parseAspectRatio,
   SUPPORTED_OUTPUT_FORMATS,
 } from '../../../lib/helpers/utils.js';
 
-export const validateSharedOptions = (sharedOptions) => {
+export const validateSharedOptions = async (sharedOptions) => {
   // Extract params
   const { files, dir, recursive, shuffle, gap, canvasColor, output } = sharedOptions;
 
   // Conduct validations
   if ((!files || !files.length) && !dir) {
     throw new Error('You must specify either [files...] or --dir.');
+  }
+
+  // Ensure dir is a valid dir path
+  if (dir.length) {
+    let stats;
+
+    try {
+      stats = await fs.stat(dir);
+    } catch (e) {
+      throw new Error('Path does not exist.');
+    }
+
+    if (!stats.isDirectory()) {
+      throw new Error('Path is not a directory.');
+    }
   }
 
   if (isNaN(gap) || !Number.isInteger(Number(gap)) || gap < 0) {
