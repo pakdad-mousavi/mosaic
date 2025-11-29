@@ -2,7 +2,7 @@
 
 import { Command } from 'commander';
 import mergeCommand from '../commands/merge/index.js';
-import { handleError } from '../lib/helpers/utils.js';
+import { configureCommandErrors, handleError } from '../lib/helpers/utils.js';
 
 const program = new Command();
 
@@ -14,6 +14,9 @@ program
 
 // Add subcommands
 program.addCommand(mergeCommand);
+
+// Configure errors for all subcommands
+configureCommandErrors(program);
 
 // Parse arguments
 try {

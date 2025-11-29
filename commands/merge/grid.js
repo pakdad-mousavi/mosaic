@@ -1,16 +1,15 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
 import {
-  addSharedOptions,
   cliConfirm,
   displayInfoMessage,
   displaySuccessMessage,
   displayWarningMessage,
-  getValidatedParams,
   handleError,
   writeImage,
 } from '../../lib/helpers/utils.js';
-import { validateGridOptions } from '../../lib/helpers/validations.js';
+import { addSharedOptions, getValidatedParams } from './helpers/utils.js';
+import { validateGridOptions } from './helpers/validations.js';
 import { loadImages } from '../../lib/helpers/loadImages.js';
 import { gridMerge } from '../../lib/merges/grid-merge/index.js';
 

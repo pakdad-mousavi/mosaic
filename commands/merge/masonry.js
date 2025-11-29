@@ -1,16 +1,15 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
 import {
-  addSharedOptions,
   cliConfirm,
   displayInfoMessage,
   displaySuccessMessage,
   displayWarningMessage,
-  getValidatedParams,
   handleError,
   writeImage,
 } from '../../lib/helpers/utils.js';
-import { validateMasonryOptions } from '../../lib/helpers/validations.js';
+import { addSharedOptions, getValidatedParams } from './helpers/utils.js';
+import { validateMasonryOptions } from './helpers/validations.js';
 import { loadImages } from '../../lib/helpers/loadImages.js';
 import { masonryMerge } from '../../lib/merges/masonry-merge/index.js';
 

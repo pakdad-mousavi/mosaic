@@ -4,7 +4,7 @@ import {
   isValidHexadecimal,
   parseAspectRatio,
   SUPPORTED_OUTPUT_FORMATS,
-} from './utils.js';
+} from '../../../lib/helpers/utils.js';
 
 export const validateSharedOptions = (sharedOptions) => {
   // Extract params
