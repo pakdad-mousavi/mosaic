@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { handleError } from '../../lib/helpers/utils.js';
+import { cliConfirm, displayInfoMessage, displayWarningMessage, handleError } from '../../lib/helpers/utils.js';
 import { validateDedupeOptions } from './helpers/validations.js';
 import { deDuplicate } from '../../lib/dedupe/index.js';
 import { loadImages } from '../../lib/helpers/loadImages.js';
