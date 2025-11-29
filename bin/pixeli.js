@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import mergeCommand from '../commands/merge.js';
+import mergeCommand from '../commands/merge/index.js';
 import { handleError } from '../lib/helpers/utils.js';
 
 const program = new Command();

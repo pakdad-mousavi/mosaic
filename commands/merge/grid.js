@@ -9,10 +9,10 @@ import {
   getValidatedParams,
   handleError,
   writeImage,
-} from '../lib/helpers/utils.js';
-import { validateGridOptions } from '../lib/helpers/validations.js';
-import { loadImages } from '../lib/helpers/loadImages.js';
-import { gridMerge } from '../lib/merges/grid-merge/index.js';
+} from '../../lib/helpers/utils.js';
+import { validateGridOptions } from '../../lib/helpers/validations.js';
+import { loadImages } from '../../lib/helpers/loadImages.js';
+import { gridMerge } from '../../lib/merges/grid-merge/index.js';
 
 const gridCommand = new Command('grid');
 

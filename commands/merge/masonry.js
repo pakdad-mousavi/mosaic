@@ -9,10 +9,10 @@ import {
   getValidatedParams,
   handleError,
   writeImage,
-} from '../lib/helpers/utils.js';
-import { validateMasonryOptions } from '../lib/helpers/validations.js';
-import { loadImages } from '../lib/helpers/loadImages.js';
-import { masonryMerge } from '../lib/merges/masonry-merge/index.js';
+} from '../../lib/helpers/utils.js';
+import { validateMasonryOptions } from '../../lib/helpers/validations.js';
+import { loadImages } from '../../lib/helpers/loadImages.js';
+import { masonryMerge } from '../../lib/merges/masonry-merge/index.js';
 
 const masonryCommand = new Command('masonry');
 
