@@ -11,7 +11,7 @@ import {
 
 export const validateSharedOptions = async (sharedOptions) => {
   // Extract params
-  const { files, dir, recursive, shuffle, arc, gap, canvasColor, output } = sharedOptions;
+  const { files, dir, recursive, shuffle, cornerRadius, gap, canvasColor, output } = sharedOptions;
 
   // Conduct validations
   if ((!files || !files.length) && !dir) {
@@ -37,8 +37,8 @@ export const validateSharedOptions = async (sharedOptions) => {
     throw new Error('--gap must be a positive integer.');
   }
 
-  if (isNaN(arc) || !Number.isInteger(Number(arc)) || arc < 0) {
-    throw new Error('--arc must be a positive integer.');
+  if (isNaN(cornerRadius) || !Number.isInteger(Number(cornerRadius)) || cornerRadius < 0) {
+    throw new Error('--corner-radius must be a positive integer.');
   }
 
   if (canvasColor !== 'transparent' && !isValidHexadecimal(canvasColor)) {
@@ -54,7 +54,7 @@ export const validateSharedOptions = async (sharedOptions) => {
     dir,
     recursive,
     shuffle,
-    arc: Number(arc),
+    cornerRadius: Number(cornerRadius),
     gap: Number(gap),
     canvasColor: canvasColor === 'transparent' ? { r: 0, g: 0, b: 0, alpha: 0 } : canvasColor,
     output,
