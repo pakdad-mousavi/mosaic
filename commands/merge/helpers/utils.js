@@ -1,5 +1,3 @@
-import { validateSharedOptions } from './validations.js';
-
 export const addSharedOptions = (cmd) => {
   return cmd
     .argument('[files...]', 'Image filepaths to merge (use --dir for directories)')
@@ -10,11 +8,4 @@ export const addSharedOptions = (cmd) => {
     .option('-g, --gap <px>', 'Gap between images', 50)
     .option('--bg, --canvas-color <hex|transparent>', 'Background color for canvas', '#ffffff')
     .option('-o, --output <file>', 'Output file path', './pixeli.png');
-};
-
-export const getValidatedParams = async (files, opts, validationFunc) => {
-  const params = { files, ...opts };
-  const sharedOptions = await validateSharedOptions(params);
-  const commandOptions = validationFunc(sharedOptions, params);
-  return { ...sharedOptions, ...commandOptions };
 };

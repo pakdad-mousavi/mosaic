@@ -8,8 +8,8 @@ import {
   handleError,
   writeImage,
 } from '../../lib/helpers/utils.js';
-import { addSharedOptions, getValidatedParams } from './helpers/utils.js';
-import { validateGridOptions } from './helpers/validations.js';
+import { addSharedOptions } from './helpers/utils.js';
+import { validateGridOptions, validateSharedOptions } from './helpers/validations.js';
 import { loadImages } from '../../lib/helpers/loadImages.js';
 import { gridMerge } from '../../lib/merges/grid-merge/index.js';
 
@@ -30,7 +30,10 @@ gridCommand
 const main = async (files, opts) => {
   // Collect and validate parameters
   try {
-    const validatedParams = await getValidatedParams(files, opts, validateGridOptions);
+    const params = { files, ...opts };
+    const sharedOptions = await validateSharedOptions(params);
+    const gridOptions = validateGridOptions(sharedOptions, params);
+    const validatedParams = { ...sharedOptions, ...gridOptions };
 
     // Load images, create grid, and write grid on disk
     await generateAndSaveGrid(validatedParams);
