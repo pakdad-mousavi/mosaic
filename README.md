@@ -11,9 +11,15 @@ The tool currently supports two main layout modes: ***Grid*** and ***Masonry*** 
 
 | Grid (1:1 images) | Contact Sheet Grid |
 |---|---|
-| <img src="samples/grid.png" width="400"> | <img src="samples/grid-with-captions.png" width="400"> |
+| <img src="samples/grid.jpg" width="400"> | <img src="samples/grid-with-captions.jpg" width="400"> |
 | **Masonry (Horizontal)** | **Masonry (Vertical)** |
-| <img src="samples/masonry-horizontal.png" width="400"> | <img src="samples/masonry-vertical.png" width="400"> |
+| <img src="samples/masonry-horizontal.jpg" width="400"> | <img src="samples/masonry-vertical.jpg" width="400"> |
+| **Collag (Instagram Grid)** | **Collage (Vertical Book Spread)** |
+| <img src="samples/instagram-grid.jpg" width="400"> | <img src="samples/vertical-book-spread.jpg" width="400"> |
+| **Collage (Horizontal Book Spread)** | **Collage (Dashboard Shot)** |
+| <img src="samples/horizontal-book-spread.jpg" width="400"> | <img src="samples/dashboard-shot.jpg" width="400"> |
+| **Collage (Art Gallery)** |
+| <img src="samples/art-gallery.jpg" width="400"> | 
 
 ## Installation
 Pixeli can be installed using npm. Simply run the following command to install it globally on your machine:
