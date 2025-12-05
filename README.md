@@ -79,6 +79,19 @@ By default, the masonry merge command uses a horizontal flow, but a vertical one
 pixeli merge masonry -rd ./samples/images -f vertical --cvh 4000
 ```
 
+### Collage Layout
+Collage layouts require a JSON template, or an inline JSON string, which describe your specific layout. The `-t` flag is used to specify the path to a JSON template, whereas the `-m` flag is used to provide inline JSON:
+```bash
+pixeli merge collage -rd ./samples/images -t ./template.json
+```
+
+You could also use a preset, and also round all the image corners in your collage:
+```bash
+pixeli merge collage -rd ./samples/images -t ./template.json --cr 100
+```
+
+To learn about the JSON template, see [collage templates](#collage-templates).
+
 ## Full Documentation
 
 ### pixeli merge
@@ -130,6 +143,95 @@ The masonry mode preserves each image’s natural shape, creating an organic bri
 | `-f`, `--flow <horizontal\|vertical>`                | `horizontal`            | Determines the **flow direction** of the masonry layout. `horizontal` creates rows of varying widths; `vertical` creates columns of varying heights.   |
 | `--ha`, `--h-align <left\|center\|right\|justified>` | `justified`             | Controls **horizontal alignment** of rows when in `horizontal` flow. `justified` overfills each row and crops the final image to fill up the canvas.   |
 | `--va`, `--v-align <top\|middle\|bottom\|justified>` | `justified`             | Controls **vertical alignment** of columns when in `vertical` flow. `justified` overfills each column and crops the final image to fill up the canvas. |
+
+### pixeli merge collage
+Usage: `pixeli merge collage [options] [files...]`
+
+The collage merge requires a specified JSON template file, or JSON string. Images will be placed as per the template. If a preset ID is provided, both `--template` and `--mapping` are ignored.
+
+| Option/Flag                                          | Default                 | Description                                                                                                                                                                                 |
+| ---------------------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-t`, `--template <path>`                            | `null`                  | Sets the **path to the JSON template file** which will be used to arrange the collage. Priority is given to this option if `--mapping` is not provided.                                     |
+| `-m`, `--mapping <string>`                           | `null`                  | Sets the **JSON string** which will be parsed to later arrange the collage. Priority is given to `--template` if both options are provided.                                                 |
+| `-p`, `--preset <preset-id>`                         | `null`                  | Use a **predefined collage preset** instead of providing your own. Available preset IDs: `instagram-grid`, `dashboardShot`, `horizontal-book-spread`, `vertical-book-spread`, `art-gallery` |
+
+### Collage Templates
+The following javascript object thoroughly describes the shape of the JSON objects which are expected to be received. Logical checks are performed on the values after the template is validated. This is to ensure the collage can be created, for example, without any overlaps or 0 pixel-wide images:
+```javascript
+{
+  type: 'object',
+  required: ['canvas', 'slots'],
+  properties: {
+    canvas: {
+      type: 'object',
+      required: ['width', 'height', 'columns', 'rows'],
+      properties: {
+        width: { type: 'number', minimum: 1, multipleOf: 1 },
+        height: { type: 'number', minimum: 1, multipleOf: 1 },
+        columns: { type: 'number', minimum: 1, multipleOf: 1 },
+        rows: { type: 'number', minimum: 1, multipleOf: 1 },
+        gap: { type: 'number', minimum: 0, multipleOf: 1 },
+        background: { type: 'string' },
+      },
+    },
+
+    slots: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['col', 'row', 'colSpan', 'rowSpan'],
+        properties: {
+          col: { type: 'number', minimum: 1, multipleOf: 1 },
+          row: { type: 'number', minimum: 1, multipleOf: 1 },
+          colSpan: { type: 'number', minimum: 1, multipleOf: 1 },
+          rowSpan: { type: 'number', minimum: 1, multipleOf: 1 },
+        },
+      },
+    },
+  },
+}
+```
+
+The `template.canvas` object defines key properties of the canvas, and the `template.slots` array lists all the slots in which images are to be placed.
+
+A slot object takes 4 properties: `col`, `row`, `colSpan`, and `rowSpan`. `col` and `row` specify which column and row to place the image in, while `colSpan` and `rowSpan` define how many units the image should take up horizontally and vertically.
+
+The width of a single unit is equal to canvas width divided by the number of columns, and the height of a single unit is equal to the canvas height divided by the number of rows.
+
+For example:
+```json
+{ 
+  "col": 1,
+  "row": 5,
+  "colSpan": 3,
+  "rowSpan": 2
+}
+```
+This slot will be placed at the 1st column from the left, at the 5th row from the top. It will span 3 columns, including the one it has been placed in, meaning it will take up column 1, 2, and 3. The same goes for the rows; the slot will take up row 5 and 6.
+
+This is an example of a full JSON template:
+```json
+{
+  "canvas": {
+    "width": 1200,
+    "height": 1600,
+    "columns": 3,
+    "rows": 6,
+    "gap": 12,
+    "background": "#000"
+  },
+  "slots": [
+    { "col": 1, "row": 1, "colSpan": 2, "rowSpan": 2 },
+    { "col": 3, "row": 1, "colSpan": 1, "rowSpan": 1 },
+    { "col": 3, "row": 2, "colSpan": 1, "rowSpan": 1 },
+    { "col": 1, "row": 3, "colSpan": 1, "rowSpan": 2 },
+    { "col": 2, "row": 3, "colSpan": 2, "rowSpan": 2 },
+    { "col": 1, "row": 5, "colSpan": 3, "rowSpan": 2 }
+  ]
+}
+```
+
+Note that the `canvas.background` and `canvas.gap` properties are optional. If they are not provided, the defaults from the CLI options will be used. If both the CLI and template options exists, the template options take priority.
 
 ## License
 This project is licensed under the [MIT License](./LICENSE).
