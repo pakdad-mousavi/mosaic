@@ -14,7 +14,7 @@ The tool currently supports two main layout modes: ***Grid*** and ***Masonry*** 
 | <img src="samples/grid.jpg" width="400"> | <img src="samples/grid-with-captions.jpg" width="400"> |
 | **Masonry (Horizontal)** | **Masonry (Vertical)** |
 | <img src="samples/masonry-horizontal.jpg" width="400"> | <img src="samples/masonry-vertical.jpg" width="400"> |
-| **Collag (Instagram Grid)** | **Collage (Vertical Book Spread)** |
+| **Collage (Instagram Grid)** | **Collage (Vertical Book Spread)** |
 | <img src="samples/instagram-grid.jpg" width="400"> | <img src="samples/vertical-book-spread.jpg" width="400"> |
 | **Collage (Horizontal Book Spread)** | **Collage (Dashboard Shot)** |
 | <img src="samples/horizontal-book-spread.jpg" width="400"> | <img src="samples/dashboard-shot.jpg" width="400"> |
