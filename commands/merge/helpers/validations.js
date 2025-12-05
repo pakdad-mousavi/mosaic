@@ -8,6 +8,7 @@ import {
   parseAspectRatio,
   SUPPORTED_OUTPUT_FORMATS,
 } from '../../../lib/helpers/utils.js';
+import { isValidPreset, PRESETS } from '../../../lib/merges/collage-merge/presets.js';
 
 export const validateSharedOptions = async (sharedOptions) => {
   // Extract params
@@ -214,13 +215,23 @@ export const validateGridOptions = (sharedOptions, gridOptions) => {
 };
 
 export const validateCollageOptions = async (collageOptions) => {
-  const { template, mapping } = collageOptions;
+  const { template, mapping, preset } = collageOptions;
+
+  // If a valid preset is given, use it
+  if (preset && isValidPreset(preset)) {
+    return { template: PRESETS[preset] };
+  }
+  // If preset is invalid, throw error
+  else if (preset && !isValidPreset(preset)) {
+    const validPresets = Object.keys(PRESETS).join(', ');
+    throw new Error(`"${preset}" is not a valid preset ID. Choose one of the following: \n${validPresets}`);
+  }
 
   // Ensure only one of the two are given
   if (!template && !mapping) {
-    throw new Error('Either --template or --mapping need to be provided.');
+    throw new Error('Either --template, --mapping, or --preset need to be provided.');
   } else if (template && mapping) {
-    throw new Error('Either --template or --mapping need to be provided, not both.');
+    throw new Error('Either use --template or --mapping, not both.');
   }
 
   // Ensure mapping is actually a json string

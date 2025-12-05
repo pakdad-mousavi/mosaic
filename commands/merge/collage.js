@@ -20,6 +20,7 @@ collageCommand
   .description('Use JSON layouts to build custom collages.')
   .option('-t, --template <path>', 'The path to the JSON file describing the collage template', null)
   .option('-m, --mapping <json>', 'Inline JSON template override straight from the command line', null)
+  .option('-p, --preset <preset-id>', 'Collage preset ID to use. Available collage IDs: ', null)
   .action(async (files, opts) => {
     await main(files, opts);
   });
