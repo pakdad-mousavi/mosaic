@@ -212,3 +212,47 @@ export const validateGridOptions = (sharedOptions, gridOptions) => {
 
   return formattedParams;
 };
+
+export const validateCollageOptions = async (collageOptions) => {
+  const { template, mapping } = collageOptions;
+
+  // Ensure only one of the two are given
+  if (!template && !mapping) {
+    throw new Error('Either --template or --mapping need to be provided.');
+  } else if (template && mapping) {
+    throw new Error('Either --template or --mapping need to be provided, not both.');
+  }
+
+  // Ensure mapping is actually a json string
+  if (!template && mapping) {
+    try {
+      JSON.parse(mapping);
+    } catch {
+      throw new Error('--mapping should be a valid JSON string.');
+    }
+  }
+
+  // Ensure template is a valid dir path
+  if (template && !mapping) {
+    let stats;
+
+    try {
+      stats = await fs.stat(template);
+    } catch (e) {
+      throw new Error('Template path does not exist.');
+    }
+  }
+
+  // Parse and return respective JSON data
+  try {
+    if (template) {
+      const jsonStr = await fs.readFile(template, 'utf8');
+      return { template: JSON.parse(jsonStr) };
+    }
+
+    // mapping is already a JSON string
+    return { template: JSON.parse(mapping) };
+  } catch (err) {
+    throw new Error('Could not read or parse the provided template or mapping JSON.');
+  }
+};
