@@ -42,6 +42,14 @@ const main = async (files, opts) => {
 };
 
 const generateAndSaveCollage = async (validatedParams) => {
+  // Replace gap and background if not provided with command line values
+  if (validatedParams.template?.canvas?.gap === undefined) {
+    validatedParams.template.canvas.gap = validatedParams.gap;
+  }
+  if (validatedParams.template?.canvas?.background === undefined) {
+    validatedParams.template.canvas.background = validatedParams.canvasColor;
+  }
+
   // Validate the template and update it
   const validatedTemplate = validateTemplate(validatedParams.template);
   validatedParams.template = validatedTemplate;
